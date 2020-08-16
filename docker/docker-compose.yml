@@ -1,0 +1,13 @@
+# Use postgres/example user/password credentials => docker-compose -f db-stack.yml up
+version: '3.1'
+
+services:
+  db:
+    build: .
+    image: postgres-test-db
+    hostname: postgres-test-db
+    container_name: postgres-test-db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: abcd1234
