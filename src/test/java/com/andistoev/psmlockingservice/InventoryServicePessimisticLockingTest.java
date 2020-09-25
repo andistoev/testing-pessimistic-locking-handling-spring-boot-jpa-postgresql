@@ -85,6 +85,7 @@ class InventoryServicePessimisticLockingTest {
         }
 
         if (hasToSetMinimalLockTimeOut && customizedItemRepositoryContext.isRequiredToSetLockTimeoutForTestsAtStartup()) {
+            log.info("... set lockTimeOut {} ms through native query at startup ...", customizedItemRepositoryContext.getMinimalPossibleLockTimeOutInMs());
             TransactionStatus tx = transactionManager.getTransaction(new DefaultTransactionDefinition());
             itemRepository.setLockTimeout(customizedItemRepositoryContext.getMinimalPossibleLockTimeOutInMs());
             transactionManager.commit(tx);
