@@ -1,4 +1,4 @@
-## This is a working example for PostgreSQL database accompanying the blog post "Testing Pessimistic Locking Handling with Spring Boot and JPA on Oracle, MySQL and PostgreSQL"
+## This is a working example for PostgreSQL database accompanying the blog post "Testing Pessimistic Locking Handling with Spring Boot and JPA"
 
 More examples here:
 - [Example for Oracle](https://github.com/andistoev/testing-pessimistic-locking-handling-spring-boot-jpa-oracle)
