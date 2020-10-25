@@ -13,8 +13,6 @@ import java.util.UUID;
 public class Item {
 
     @Id
-    @Type(type = "uuid-char")
-    @Column(length = 36)
     private UUID id = UUID.randomUUID();
 
     private int amount = 0;
