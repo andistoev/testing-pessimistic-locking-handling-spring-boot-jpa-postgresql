@@ -16,10 +16,9 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Item incrementAmount(UUID id, int amount) {
+    public void incrementAmount(UUID id, int amount) {
         Item item = itemRepository.getItemAndObtainPessimisticWriteLockingOnItById(id);
         item.setAmount(item.getAmount() + amount);
-        return item;
     }
 
 }

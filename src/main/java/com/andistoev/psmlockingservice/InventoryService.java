@@ -24,14 +24,14 @@ public class InventoryService {
             itemService.incrementAmount(id, amount);
         } catch (PessimisticLockingFailureException e) {
             log.error("Found pessimistic lock exception!", e);
-            sleep(PESSIMISTIC_LOCKING_EXCEPTION_HANDLING_RETRY_AFTER_MS);
+            sleepForAWhile();
             itemService.incrementAmount(id, amount);
         }
     }
 
-    private void sleep(long timeout) {
+    private void sleepForAWhile() {
         try {
-            TimeUnit.MILLISECONDS.sleep(timeout);
+            TimeUnit.MILLISECONDS.sleep(PESSIMISTIC_LOCKING_EXCEPTION_HANDLING_RETRY_AFTER_MS);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }

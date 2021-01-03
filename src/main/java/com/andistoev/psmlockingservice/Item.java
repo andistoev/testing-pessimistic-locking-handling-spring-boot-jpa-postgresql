@@ -1,9 +1,7 @@
 package com.andistoev.psmlockingservice;
 
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;

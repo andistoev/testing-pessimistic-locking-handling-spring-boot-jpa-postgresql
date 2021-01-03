@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
@@ -108,7 +109,7 @@ class InventoryServicePessimisticLockingTest {
             }
 
             executor.shutdown();
-            executor.awaitTermination(1, TimeUnit.MINUTES);
+            assertTrue(executor.awaitTermination(1, TimeUnit.MINUTES));
         } else {
             for (final int amount : itemAmounts) {
                 inventoryService.incrementAmount(srcItem.getId(), amount);
@@ -116,7 +117,7 @@ class InventoryServicePessimisticLockingTest {
         }
 
         // then
-        final Item item = itemRepository.findById(srcItem.getId()).get();
+        final Item item = itemRepository.findById(srcItem.getId()).orElseThrow(() -> new IllegalArgumentException("Item not found!"));
 
         assertAll(
                 () -> assertEquals(15, item.getAmount()),
